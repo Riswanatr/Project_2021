@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'dart:async';
 
-
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
@@ -22,11 +21,11 @@ class Signin extends StatelessWidget {
 
   final databaseReference = FirebaseDatabase.instance.reference();
 
-  void createData(){
-    databaseReference.child("flutterDevsTeam1").set({
-      'name': 'Misha mohan',
-      'description': 'Team Lead'
-    });}
+  void createData() {
+    databaseReference
+        .child("flutterDevsTeam1")
+        .set({'name': 'Misha mohan', 'description': 'Team Lead'});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,11 +131,11 @@ class Signin extends StatelessWidget {
                                     style: TextStyle(color: Colors.blue[200]),
                                   ),
                                   onPressed: () {
-                                    
-                                   Navigator.push(
-                                     context,
-                                     MaterialPageRoute(
-                                          builder: (context) => FirebaseRealtimeDemoScreen()),
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              FirebaseRealtimeDemoScreen()),
                                     );
                                   },
                                 ),
@@ -175,17 +174,12 @@ class Signin extends StatelessWidget {
                             ))
                           ],
                         ))))));
-  
   }
 }
 
-
 //firebase
 
-
-
 class FirebaseRealtimeDemoScreen extends StatelessWidget {
-
   final databaseReference = FirebaseDatabase.instance.reference();
 
   @override
@@ -197,100 +191,90 @@ class FirebaseRealtimeDemoScreen extends StatelessWidget {
       ),
       body: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-
-                RaisedButton(
-                  child: Text('Create Data'),
-                  color: Colors.redAccent,
-                  onPressed: () {
-                    createData();
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-                ),
-                SizedBox(height: 8,),
-                RaisedButton(
-                  child: Text('Read/View Data'),
-                  color: Colors.redAccent,
-
-                  onPressed: () {
-                    readData();
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-
-                ),
-                SizedBox(height: 8,),
-
-                RaisedButton(
-                  child: Text('Update Data'),
-                  color: Colors.redAccent,
-
-                  onPressed: () {
-                    updateData();
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-
-                ),
-                SizedBox(height: 8,),
-
-                RaisedButton(
-                  child: Text('Delete Data'),
-                  color: Colors.redAccent,
-
-                  onPressed: () {
-                    deleteData();
-                  },
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-
-                ),
-              ],
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            RaisedButton(
+              child: Text('Create Data'),
+              color: Colors.redAccent,
+              onPressed: () {
+                createData();
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
             ),
-          )
-      ), //center
+            SizedBox(
+              height: 8,
+            ),
+            RaisedButton(
+              child: Text('Read/View Data'),
+              color: Colors.redAccent,
+              onPressed: () {
+                readData();
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            RaisedButton(
+              child: Text('Update Data'),
+              color: Colors.redAccent,
+              onPressed: () {
+                updateData();
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            RaisedButton(
+              child: Text('Delete Data'),
+              color: Colors.redAccent,
+              onPressed: () {
+                deleteData();
+              },
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+            ),
+          ],
+        ),
+      )), //center
     );
   }
 
-  void createData(){
-    databaseReference.child("flutterDevsTeam1").push().set({
-      'name': 'Dayana edwin',
-      'description': 'Team Member'
-    });
-    
+  void createData() {
+    databaseReference
+        .child("flutterDevsTeam1")
+        .push()
+        .set({'name': 'Dayana edwin', 'description': 'Team Member'});
   }
-  void readData(){
+
+  void readData() {
     databaseReference.once().then((DataSnapshot snapshot) {
       print('Data : ${snapshot.value}');
     });
   }
 
-  void updateData(){
-    databaseReference.child('flutterDevsTeam1').update({
-      'description': 'ABC'
-    });
-    databaseReference.child('flutterDevsTeam2').update({
-      'description': 'ABCDE'
-    });
-    databaseReference.child('flutterDevsTeam3').update({
-      'description': 'EFGHI'
-    });
+  void updateData() {
+    databaseReference.child('flutterDevsTeam1').update({'description': 'ABC'});
+    databaseReference
+        .child('flutterDevsTeam2')
+        .update({'description': 'ABCDE'});
+    databaseReference
+        .child('flutterDevsTeam3')
+        .update({'description': 'EFGHI'});
   }
 
-  void deleteData(){
+  void deleteData() {
     databaseReference.child('flutterDevsTeam1').remove();
     databaseReference.child('flutterDevsTeam2').remove();
     databaseReference.child('flutterDevsTeam3').remove();
-
   }
 }
-
-
-
-
-
-
-
 
 //SignUp page
 

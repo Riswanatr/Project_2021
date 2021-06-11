@@ -9,7 +9,7 @@ config = {
     "databaseURL": "https://final-year-project-95782-default-rtdb.asia-southeast1.firebasedatabase.app/",
     "storageBucket": "finalproject-d36c2.appspot.com",
     "messagingSenderId": "616534496864",
-    "appId": "1:616534496864:web:8dadb3cda4961f169d9505",
+    "appId": "1:684707211078:android:2d35fcff83ba0306e06747",
     "measurementId": "G-DK45MLV8H9"
         }
 
